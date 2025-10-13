@@ -1,0 +1,5 @@
+requests
+pandas
+pyscopg2
+python-dotenv
+pytest

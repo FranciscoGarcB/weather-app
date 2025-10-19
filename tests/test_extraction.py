@@ -6,4 +6,6 @@ def test_single_day():
     assert dataframe is not None
     print(dataframe)
 
-test_single_day()
+def test_multiple_days():
+    dataframe = get_hourly_weather(1, 9.4326, -99.1332, "2025-01-01", "2025-01-05")
+    assert len(dataframe["datetime"])==120

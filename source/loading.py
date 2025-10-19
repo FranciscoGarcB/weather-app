@@ -2,6 +2,7 @@ import os
 import psycopg2
 import pandas as pd
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 from psycopg2.extras import execute_values
 
 from extraction import get_hourly_weather
@@ -34,11 +35,11 @@ def load_to_db(conn, dataframe: pd.DataFrame) -> None:
         INSERT INTO raw_weather 
         (city_id, datetime, temperature_celsius, humidity, precipitation, windspeed)
         VALUES %s
-        ON CONFLICT (city_id, datetime) DO UPDATE;
+        ON CONFLICT (city_id, datetime) DO NOTHING
     """
 
     records = dataframe.to_records(index=False)
-    values = [(r.city_id, r.datetime, r.temperature_celsius, r.humidity, r.precipitation, r.windspeed) for r in records]
+    values = [(int(r.city_id), r.datetime, int(r.temperature_celsius), int(r.humidity), int(r.precipitation), int(r.windspeed)) for r in records]
 
     with conn.cursor() as cur:
         execute_values(cur, query, values)
@@ -47,8 +48,8 @@ def load_to_db(conn, dataframe: pd.DataFrame) -> None:
 
 
 if __name__ == "__main__":
-    start_date = "2025-02-01"
-    end_date = "2025-08-31"
+    start_date = "2025-01-01"
+    end_date = "2025-10-17"
 
     conn = get_connection()
     query = "SELECT city_id, latitude, longitude FROM cities;"
@@ -62,4 +63,7 @@ if __name__ == "__main__":
 
         temp_df = get_hourly_weather(id, lat, lon, start_date, end_date)
         df_final = pd.concat([df_final, temp_df])
+
         print(f"{id}/{len(cities)} cities updated.")
+
+    load_to_db(conn=conn, dataframe=df_final)

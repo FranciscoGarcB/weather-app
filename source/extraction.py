@@ -1,9 +1,6 @@
-import os
 import requests
-import psycopg2
 import pandas as pd
-from dotenv import load_dotenv
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 def get_hourly_weather(city_id: int, latitude: float, longitude:float, start_date: str, end_date: str = None) -> pd.DataFrame | None:
@@ -71,7 +68,7 @@ def get_hourly_weather(city_id: int, latitude: float, longitude:float, start_dat
         df = pd.DataFrame({
             "city_id": city_id,
             "datetime": data["hourly"]["time"],
-            "temperature": data["hourly"]["temperature_2m"],
+            "temperature_celsius": data["hourly"]["temperature_2m"],
             "humidity": data["hourly"]["relative_humidity_2m"],
             "precipitation": data["hourly"]["temperature_2m"],
             "windspeed": data["hourly"]["wind_speed_10m"]

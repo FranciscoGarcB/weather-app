@@ -1,0 +1,33 @@
+city_id,name,state_id,latitude,longitude,is_capital
+1,Aguascalientes,1,21.8853,-102.2916,True
+2,Mexicali,2,32.6245,-115.4523,True
+3,La Paz,3,24.1426,-110.3103,True
+4,Campeche,4,19.8301,-90.5349,True
+5,Tuxtla Gutiérrez,5,16.7528,-93.115,True
+6,Chihuahua,6,28.632,-106.0691,True
+7,Ciudad de México,7,19.4326,-99.1332,True
+8,Saltillo,8,25.4383,-100.973,True
+9,Colima,9,19.2433,-103.725,True
+10,Durango,10,24.0277,-104.6532,True
+11,Guanajuato,11,21.019,-101.2574,True
+12,Chilpancingo,12,17.5516,-99.5056,True
+13,Pachuca,13,20.1014,-98.7625,True
+14,Guadalajara,14,20.6597,-103.3496,True
+15,Toluca,15,19.2826,-99.6557,True
+16,Morelia,16,19.703,-101.184,True
+17,Cuernavaca,17,18.9242,-99.2216,True
+18,Tepic,18,21.5017,-104.898,True
+19,Monterrey,19,25.6866,-100.3161,True
+20,Oaxaca,20,17.0732,-96.7266,True
+21,Puebla,21,19.0413,-98.2062,True
+22,Querétaro,22,20.5888,-100.3899,True
+23,Chetumal,23,18.5033,-88.2963,True
+24,San Luis Potosí,24,22.1496,-100.9792,True
+25,Culiacán,25,24.8091,-107.394,True
+26,Hermosillo,26,29.0729,-110.9559,True
+27,Villahermosa,27,17.989,-92.9476,True
+28,Ciudad Victoria,28,23.7369,-99.1411,True
+29,Tlaxcala,29,19.3189,-98.2373,True
+30,Xalapa,30,19.5438,-96.9106,True
+31,Mérida,31,20.9674,-89.5926,True
+32,Zacatecas,32,22.7709,-102.5832,True

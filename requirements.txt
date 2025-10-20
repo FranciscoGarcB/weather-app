@@ -3,3 +3,4 @@ pandas
 pyscopg2
 python-dotenv
 pytest
+snowflake-connector-python

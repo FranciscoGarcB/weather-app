@@ -39,7 +39,7 @@ def load_to_db(conn, dataframe: pd.DataFrame) -> None:
     """
 
     records = dataframe.to_records(index=False)
-    values = [(int(r.city_id), r.datetime, int(r.temperature_celsius), int(r.humidity), int(r.precipitation), int(r.windspeed)) for r in records]
+    values = [(int(r.city_id), r.datetime, float(r.temperature_celsius), float(r.humidity), float(r.precipitation), int(r.windspeed)) for r in records]
 
     with conn.cursor() as cur:
         execute_values(cur, query, values)
@@ -48,13 +48,18 @@ def load_to_db(conn, dataframe: pd.DataFrame) -> None:
 
 
 if __name__ == "__main__":
+    start_date = datetime.now() - timedelta(days=3)
+    start_date = start_date.strftime("%Y-%m-%d")
     start_date = "2025-01-01"
-    end_date = "2025-10-17"
+    end_date = datetime.now() - timedelta(days=1)
+    end_date = end_date.strftime("%Y-%m-%d")
+
+    print(f"Updating database from {start_date} to {end_date}.")
 
     conn = get_connection()
     query = "SELECT city_id, latitude, longitude FROM cities;"
     cities = pd.read_sql_query(query, conn)
-    
+
     df_final = pd.DataFrame()
     for index, row in cities.iterrows():
         id = int(row["city_id"])

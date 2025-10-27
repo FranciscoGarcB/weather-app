@@ -4,7 +4,6 @@ import pandas as pd
 import snowflake.connector
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
-from psycopg2.extras import execute_values
 
 from extraction import get_hourly_weather
 
@@ -74,10 +73,10 @@ def load_to_snowflake(conn, dataframe: pd.DataFrame) -> None:
         conn.commit()
         print("Merge completed successfully.")
 
+
 if __name__ == "__main__":
     start_date = datetime.now() - timedelta(days=3)
     start_date = start_date.strftime("%Y-%m-%d")
-    start_date = "2025-01-01"
     end_date = datetime.now() - timedelta(days=1)
     end_date = end_date.strftime("%Y-%m-%d")
 
@@ -95,6 +94,6 @@ if __name__ == "__main__":
         temp_df = get_hourly_weather(id, lat, lon, start_date, end_date)
 
         load_to_snowflake(conn=conn, dataframe=temp_df)
-        print(f"{id}/{len(cities)} cities updated.")
+        print(f"{id}/{len(cities)} cities updated.\n")
 
     conn.close()
